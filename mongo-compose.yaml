@@ -1,0 +1,26 @@
+# Running multiple Docker containers at once, with their configuration
+version: '3'
+services: 
+  mongodb:
+    image: mongo
+    ports:
+    - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+  mongo-express:
+    image: mongo-express
+    ports:
+    - 8081:8081
+    restart: always  # to make sure mongo express can connect to mongodb container when starting the project
+    environment:
+    - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+    - ME_CONFIG_MONGODB_ADMINPASSWORD=password
+    - ME_CONFIG_MONGODB_SERVER=mongodb
+
+
+# command to run docker compose : 
+
+# $ docker-compose -f mongo-compose.yaml up 
+
+# $ docker-compose -f mongo-compose.yaml down
