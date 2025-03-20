@@ -8,6 +8,8 @@ services:
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=password
+    volumes:
+      - mongo-data:/data/db # docker volume on the container file system
   mongo-express:
     image: mongo-express
     ports:
@@ -17,7 +19,9 @@ services:
     - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
     - ME_CONFIG_MONGODB_ADMINPASSWORD=password
     - ME_CONFIG_MONGODB_SERVER=mongodb
-
+volumes:  # attaching a docker volume on the host file system
+  mongo-data:
+    driver: local
 
 # command to run docker compose : 
 
