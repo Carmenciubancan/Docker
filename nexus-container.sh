@@ -1,3 +1,5 @@
+## run nexus app as a docker container
+
 $ apt update
 $ apt install docker 
 
